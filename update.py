@@ -49,7 +49,7 @@ def update(hostname, ip):
         print_time("Update successful..")
     else:
         print_time("Update unsuccessful: " + dyn.text.strip())
-    print("-----------------------------------")
+
 def sameIP():
     if prev_ip == ip:
         return True
@@ -66,7 +66,9 @@ def main():
                 update(hostname, ip)
             else:
                 print_time("Same IP skip update...")
+        print("-----------------------------------")
         time.sleep( delay * 60 )
+
 
 def print_time(text):
     print(time.strftime("%d/%m/%Y, %I:%M %p", time.localtime()), text)
