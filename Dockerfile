@@ -13,4 +13,4 @@ ENV password=password
 ENV hostname=name.ddns.com
 ENV delay=15
 
-CMD [ "python3", "./update.py" ]
+CMD [ "python3", "-u", "./update.py" ]
