@@ -17,6 +17,7 @@ prev_ip = '0.0.0.0'
 
 def getIP():
     global ip
+    global prev_ip
     res = requests.get('http://ipinfo.io')
     if res.status_code is not 200:
         print_time("[Error] - can not get connection")
@@ -68,7 +69,7 @@ def main():
         time.sleep( delay * 60 )
 
 def print_time(text):
-    print(time.strftime("%-d/%-m/%Y, %I:%M %p", time.localtime()), text)
+    print(time.strftime("%d/%m/%Y, %I:%M %p", time.localtime()), text)
 
 
 if __name__ == '__main__':
