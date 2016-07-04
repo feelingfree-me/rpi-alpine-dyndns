@@ -9,9 +9,4 @@ RUN apk --update add python3 tzdata && \
 COPY update.py /app/update.py 
 WORKDIR /app
 
-ENV username=username
-ENV password=password
-ENV hostname=name.ddns.com
-ENV delay=15
-
 CMD [ "python3", "-u", "./update.py" ]
