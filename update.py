@@ -12,6 +12,7 @@ delay =  int(os.getenv('delay', '15'))
 
 dynupdate = "https://members.dyndns.com/nic/update"
 ip = '0.0.0.0'
+prev_ip = '0.0.0.0'
 
 
 def getIP():
@@ -24,6 +25,7 @@ def getIP():
     if res is None:
         print_time("[Error] - can not find IP")
         return None
+    prev_ip = ip
     ip = res
     print_time("IP address " + ip)
     return True
@@ -47,6 +49,11 @@ def update(hostname, ip):
     else:
         print_time("Update unsuccessful: " + dyn.text.strip())
     print("-----------------------------------")
+def sameIP():
+    if prev_ip == ip:
+        return True
+    else:
+        return False
 
 def main():
     if username is None or password is None or hostname is None:
@@ -54,7 +61,10 @@ def main():
         sys.exit(0)
     while True:
         if getIP():
-            update(hostname, ip)
+            if not sameIP():
+                update(hostname, ip)
+            else:
+                print_time("Same IP skip update...")
         time.sleep( delay * 60 )
 
 def print_time(text):
